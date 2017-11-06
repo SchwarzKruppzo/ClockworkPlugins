@@ -1,0 +1,13 @@
+local ITEM = Clockwork.item:New("ammo_base");
+	ITEM.name = "Sniper Penetration Rounds";
+	ITEM.cost = 40;
+	ITEM.classes = {CLASS_EOW};
+	ITEM.model = "models/Items/sniper_round_box.mdl";
+	ITEM.weight = 3;
+	ITEM.access = "V";
+	ITEM.uniqueID = "m9k_sniper_rounds";
+	ITEM.business = true;
+	ITEM.ammoClass = "SniperPenetratedRound";
+	ITEM.ammoAmount = 50;
+	ITEM.description = "A small box filled with bullets and 'Sniper' printed on the side.";
+ITEM:Register();

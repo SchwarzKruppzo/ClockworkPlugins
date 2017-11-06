@@ -1,0 +1,2 @@
+-- Adds the config for our jammer's range, and caps it at 256 as a minimum, and 2560 as a maximum.
+Clockwork.config:AddToSystem("Radio jammer range", "jammer_range", "The effective range of the radio jammer.", 512, 5120)

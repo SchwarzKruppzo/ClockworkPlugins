@@ -1,0 +1,10 @@
+local ITEM = Clockwork.item:New("weapon_base");
+	ITEM.name = "MAC10";
+	ITEM.cost = 0;
+	ITEM.model = "models/weapons/3_smg_mac10.mdl";
+	ITEM.weight = 1;
+	ITEM.uniqueID = "bb_mac10_alt";
+	ITEM.business = false;
+	ITEM.description = "A tiny thing. Is this a toy!?";
+	ITEM.isAttachment = false;
+ITEM:Register();

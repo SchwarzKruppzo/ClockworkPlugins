@@ -1,0 +1,11 @@
+local ITEM = Clockwork.item:New("weapon_base");
+	ITEM.name = "P228";
+	ITEM.cost = 0;
+	ITEM.model = "models/weapons/3_pist_p228.mdl";
+	ITEM.weight = 1.7;
+	ITEM.uniqueID = "bb_p228";
+	ITEM.business = false;
+	ITEM.description = "An unremarkable pistol in any and every fashion. The only plus-side is a flashlight attachment.";
+	ITEM.isAttachment = false;
+	ITEM.hasFlashlight = true;
+ITEM:Register();

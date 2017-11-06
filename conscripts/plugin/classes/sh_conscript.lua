@@ -1,0 +1,9 @@
+local CLASS = Clockwork.class:New("Conscripts");
+	CLASS.color = Color(111, 182, 67, 255);
+	CLASS.wages = 5;
+	CLASS.factions = {FACTION_CONSCRIPT};
+	CLASS.isDefault = true;
+	CLASS.wagesName = "Allowance";
+	CLASS.description = "A human Conscript forced into service by the Universal Union";
+	CLASS.defaultPhysDesc = "Wearing a uniform.";
+CLASS_CONSCRIPT = CLASS:Register();

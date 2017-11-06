@@ -1,0 +1,13 @@
+local ITEM = Clockwork.item:New("ammo_base");
+	ITEM.name = "Winchester Rounds";
+	ITEM.cost = 40;
+	ITEM.classes = {CLASS_EOW};
+	ITEM.model = "models/Items/sniper_round_box.mdl";
+	ITEM.weight = 1;
+	ITEM.access = "V";
+	ITEM.uniqueID = "m9k_winchester";
+	ITEM.business = true;
+	ITEM.ammoClass = "AirboatGun";
+	ITEM.ammoAmount = 16;
+	ITEM.description = "A bos with oddly shaped Shotgun shells plainly designed for a specific set of weapons.";
+ITEM:Register();

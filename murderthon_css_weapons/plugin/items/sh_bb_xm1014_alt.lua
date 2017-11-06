@@ -1,0 +1,16 @@
+local ITEM = Clockwork.item:New("weapon_base");
+	ITEM.name = "XM1014";
+	ITEM.cost = 9999999;
+	ITEM.model = "models/weapons/3_shot_xm1014.mdl";
+	ITEM.weight = 3;
+	ITEM.uniqueID = "bb_xm1014_alt";
+	ITEM.business = false;
+	ITEM.description = "A generic shotgun with a flashlight attachment.";
+	ITEM.isAttachment = true;
+	ITEM.hasFlashlight = true;
+	ITEM.loweredOrigin = Vector(3, 0, -4);
+	ITEM.loweredAngles = Angle(0, 45, 0);
+	ITEM.attachmentBone = "ValveBiped.Bip01_Spine";
+	ITEM.attachmentOffsetAngles = Angle(0, 0, 0);
+	ITEM.attachmentOffsetVector = Vector(-4, 4, 4);
+ITEM:Register();

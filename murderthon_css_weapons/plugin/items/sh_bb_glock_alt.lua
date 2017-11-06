@@ -1,0 +1,10 @@
+local ITEM = Clockwork.item:New("weapon_base");
+	ITEM.name = "Glock 18";
+	ITEM.cost = 0;
+	ITEM.model = "models/weapons/3_pist_glock18.mdl";
+	ITEM.weight = 1;
+	ITEM.uniqueID = "bb_glock_alt";
+	ITEM.business = false;
+	ITEM.description = "A light pistol capable of firing single shots or full-auto.";
+	ITEM.isAttachment = false;
+ITEM:Register();

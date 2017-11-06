@@ -1,0 +1,9 @@
+local CLASS = Clockwork.class:New("Civil Workers' Union");
+	CLASS.color = Color(250, 200, 100, 255);
+	CLASS.factions = {FACTION_CWU};
+	CLASS.wages = 0;
+	CLASS.isDefault = true;
+	CLASS.wagesName = "Wages";
+	CLASS.description = "A Union faction designed to handle the production and distribution of all commercial goods.";
+	CLASS.defaultPhysDesc = "Wearing a uniform with their name etched in as well as the words 'Civil Workers' Union'.";
+CLASS_CWU = CLASS:Register();

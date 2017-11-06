@@ -1,0 +1,10 @@
+local ITEM = Clockwork.item:New("weapon_base");
+	ITEM.name = "Desert Eagle";
+	ITEM.cost = 0;
+	ITEM.model = "models/weapons/3_pist_deagle.mdl";
+	ITEM.weight = 2.4;
+	ITEM.uniqueID = "bb_deagle_alt";
+	ITEM.business = false;
+	ITEM.description = "Aah. Good ol' Juan Deag.";
+	ITEM.isAttachment = false;
+ITEM:Register();

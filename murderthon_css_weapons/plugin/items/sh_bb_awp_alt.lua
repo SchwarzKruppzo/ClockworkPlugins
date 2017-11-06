@@ -1,0 +1,16 @@
+local ITEM = Clockwork.item:New("weapon_base");
+	ITEM.name = "A.W.P";
+	ITEM.cost = 0;
+	ITEM.model = "models/weapons/3_snip_awp.mdl";
+	ITEM.weight = 3;
+	ITEM.uniqueID = "bb_awp_alt";
+	ITEM.business = false;
+	ITEM.description = "A sniper rifle with a cracked scope. You can still look through it.";
+	ITEM.isAttachment = false;
+	ITEM.isAttachment = true;
+	ITEM.loweredOrigin = Vector(3, 0, -4);
+	ITEM.loweredAngles = Angle(0, 45, 0);
+	ITEM.attachmentBone = "ValveBiped.Bip01_Spine";
+	ITEM.attachmentOffsetAngles = Angle(0, 0, 0);
+	ITEM.attachmentOffsetVector = Vector(-4, 4, 4);
+ITEM:Register();

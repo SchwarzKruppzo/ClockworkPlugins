@@ -1,0 +1,15 @@
+local ITEM = Clockwork.item:New("weapon_base");
+	ITEM.name = "M4A1";
+	ITEM.cost = 0;
+	ITEM.model = "models/weapons/3_rif_m4a1.mdl";
+	ITEM.weight = 3;
+	ITEM.uniqueID = "bb_m4a1_alt";
+	ITEM.business = false;
+	ITEM.description = "A rifle, coated in a dark grey.";
+	ITEM.isAttachment = true;
+	ITEM.loweredOrigin = Vector(3, 0, -4);
+	ITEM.loweredAngles = Angle(0, 45, 0);
+	ITEM.attachmentBone = "ValveBiped.Bip01_Spine";
+	ITEM.attachmentOffsetAngles = Angle(0, 0, 0);
+	ITEM.attachmentOffsetVector = Vector(-4, 4, 4);
+ITEM:Register();
