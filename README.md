@@ -1,2 +1,2 @@
 # Clockwork Plugins
-The 124 plugins for Clockwork and HL2 RP made by different developers. I do not own any of these work.
+The collection of plugins for Clockwork, HL2 RP and other schemas, made by different developers. I do not own any of these work.
