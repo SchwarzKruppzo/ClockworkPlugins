@@ -18,17 +18,6 @@ function PANEL:Init()
 		self.bSelectModel = true;
 	end;
 	
-	local genderModels = Clockwork.faction.stored[self.info.faction].models[string.lower(self.info.gender)];
-	
-	if (genderModels and #genderModels == 1) then
-		self.bSelectModel = false;
-		self.overrideModel = genderModels[1];
-		
-		if (!panel:FadeInModelPanel(self.overrideModel)) then
-			panel:SetModelPanelModel(self.overrideModel);
-		end;
-	end;
-	
 	if (!Clockwork.faction.stored[self.info.faction].GetName) then
 		self.nameForm = vgui.Create("DForm", self);
 		self.nameForm:SetPadding(4);
@@ -83,6 +72,61 @@ function PANEL:Init()
 	self.customizeButton = self.customizeButton or self.appearanceForm:Button("Customize");
 	self.customizeButton:SetVisible(false);
 	self.info.customizationOptions = {};
+
+	local genderModels = Clockwork.faction.stored[self.info.faction].models[string.lower(self.info.gender)];
+	
+	if (genderModels and #genderModels == 1) then
+		self.bSelectModel = false;
+		self.overrideModel = genderModels[1];
+		
+		if (!panel:FadeInModelPanel(self.overrideModel)) then
+			panel:SetModelPanelModel(self.overrideModel);
+		end;
+
+		local modelEnt = panel.characterModel.Entity;
+
+		if (IsValid(modelEnt)) then
+			local bodygroups = modelEnt:GetBodyGroups();
+			local bodygroupCount = table.Count(bodygroups) - 1;
+			local skinCount = modelEnt:SkinCount() - 1;
+
+			if (bodygroupCount > 0 or skinCount > 0) then
+				self.customizeButton:SetVisible(true);
+
+				self.customizeButton.DoClick = function()
+					local options = {};
+
+					if (skinCount > 0) then
+						options["Skin"] = {};
+
+						for i = 0, skinCount do
+							options["Skin"]["Skin "..tostring(i)] = function()
+								modelEnt:SetSkin(i);
+								self.info.customizationOptions["Skin"] = i;
+							end;
+						end;
+					end;
+
+					for k, v in pairs(bodygroups) do
+						local name, num = v.name or "Unknown", v.num - 1;
+
+						options[name] = {};
+
+						for i = 0, num do
+							if (num > 0) then
+								options[name][name.." "..tostring(i)] = function()
+									modelEnt:SetBodygroup(v.id, i);
+									self.info.customizationOptions[v.id] = i;
+								end;
+							end;
+						end;
+					end;
+		
+					local menuPanel = Clockwork.kernel:AddMenuFromData(nil, options, function(menuPanel, option, arguments) end);
+				end;
+			end;
+		end;
+	end;
 	
 	local informationColor = Clockwork.option:GetColor("information");
 	local lowerGender = string.lower(self.info.gender);
@@ -112,46 +156,50 @@ function PANEL:Init()
 						self.selectedSpawnIcon = spawnIcon;
 						self.selectedModel = v2;
 
-						local bodygroups = panel.characterModel:GetModelPanel().Entity:GetBodyGroups();
-						local bodygroupCount = table.Count(bodygroups) - 1;
-						local skinCount = panel.characterModel:GetModelPanel().Entity:SkinCount() - 1;
+						self.customizeButton:SetVisible(false);
 
-						if (bodygroupCount > 0 or skinCount > 0) then
-							self.customizeButton:SetVisible(true);
+						local modelEnt = panel.characterModel.Entity;
 
-							self.customizeButton.DoClick = function()
-								local options = {};
+						if (IsValid(modelEnt)) then
+							local bodygroups = modelEnt:GetBodyGroups();
+							local bodygroupCount = table.Count(bodygroups) - 1;
+							local skinCount = modelEnt:SkinCount() - 1;
 
-								if (skinCount > 0) then
-									options["Skin"] = {};
+							if (bodygroupCount > 0 or skinCount > 0) then
+								self.customizeButton:SetVisible(true);
 
-									for i = 0, skinCount do
-										options["Skin"]["Skin "..tostring(i)] = function()
-											panel.characterModel:GetModelPanel().Entity:SetSkin(i);
-											self.info.customizationOptions["Skin"] = i;
-										end;
-									end;
-								end;
+								self.customizeButton.DoClick = function()
+									local options = {};
 
-								for k, v in pairs(bodygroups) do
-									local name, num = v.name or "Unknown", v.num - 1;
+									if (skinCount > 0) then
+										options["Skin"] = {};
 
-									options[name] = {};
-
-									for i = 0, num do
-										if (num > 0) then
-											options[name][name.." "..tostring(i)] = function()
-												panel.characterModel:GetModelPanel().Entity:SetBodygroup(v.id, i);
-												self.info.customizationOptions[v.id] = i;
+										for i = 0, skinCount do
+											options["Skin"]["Skin "..tostring(i)] = function()
+												modelEnt:SetSkin(i);
+												self.info.customizationOptions["Skin"] = i;
 											end;
 										end;
 									end;
-								end;
 
-								local menuPanel = Clockwork.kernel:AddMenuFromData(nil, options, function(menuPanel, option, arguments) end);
+									for k, v in pairs(bodygroups) do
+										local name, num = v.name or "Unknown", v.num - 1;
+
+										options[name] = {};
+
+										for i = 0, num do
+											if (num > 0) then
+												options[name][name.." "..tostring(i)] = function()
+													modelEnt:SetBodygroup(v.id, i);
+													self.info.customizationOptions[v.id] = i;
+												end;
+											end;
+										end;
+									end;
+
+									local menuPanel = Clockwork.kernel:AddMenuFromData(nil, options, function(menuPanel, option, arguments) end);
+								end;
 							end;
-						else
-							self.customizeButton:SetVisible(false);
 						end;
 					end;
 					

@@ -16,10 +16,10 @@ function PANEL:Init()
 	self.characterModel:SetPos(0, 0);
 	self.characterModel:SetModel(Clockwork.Client:GetModel());
 
-	self.characterModel:GetModelPanel().DoClick = function()
-		local bodygroups = self.characterModel:GetModelPanel().Entity:GetBodyGroups();
+	self.characterModel.DoClick = function()
+		local bodygroups = self.characterModel.Entity:GetBodyGroups();
 		local bodygroupCount = table.Count(bodygroups) - 1;
-		local skinCount = self.characterModel:GetModelPanel().Entity:SkinCount() - 1;
+		local skinCount = self.characterModel.Entity:SkinCount() - 1;
 		local options = {["Customize"] = {}};
 
 		options["Apply"] = function()
@@ -36,7 +36,7 @@ function PANEL:Init()
 
 			for i = 0, skinCount do
 				options["Customize"]["Skin"]["Skin "..tostring(i)] = function()
-					self.characterModel:GetModelPanel().Entity:SetSkin(i);
+					self.characterModel.Entity:SetSkin(i);
 					self.customizationOptions["Skin"] = i;
 				end;
 			end;
@@ -50,7 +50,7 @@ function PANEL:Init()
 			for i = 0, num do
 				if (num > 0) then
 					options["Customize"][name][name.." "..tostring(i)] = function()
-						self.characterModel:GetModelPanel().Entity:SetBodygroup(v.id, i);
+						self.characterModel.Entity:SetBodygroup(v.id, i);
 						self.customizationOptions[v.id] = i;
 					end;
 				end;
@@ -62,9 +62,9 @@ function PANEL:Init()
 
 	for k, v in pairs(Clockwork.Client.customizationOptions) do
 		if (k == "Skin") then
-			self.characterModel:GetModelPanel().Entity:SetSkin(v);
+			self.characterModel.Entity:SetSkin(v);
 		else
-			self.characterModel:GetModelPanel().Entity:SetBodygroup(k, v);
+			self.characterModel.Entity:SetBodygroup(k, v);
 		end;
 	end;
 
@@ -105,9 +105,9 @@ function PANEL:ResetModel()
 
 	for k, v in pairs(Clockwork.Client.customizationOptions) do
 		if (k == "Skin") then
-			self.characterModel:GetModelPanel().Entity:SetSkin(v);
+			self.characterModel.Entity:SetSkin(v);
 		else
-			self.characterModel:GetModelPanel().Entity:SetBodygroup(k, v);
+			self.characterModel.Entity:SetBodygroup(k, v);
 		end;
 	end;
 end;
